@@ -1,0 +1,44 @@
+##
+# Copyright (c) New Cloud Technologies, Ltd., 2014-2022
+#
+# You can not use the contents of the file in any way without
+# New Cloud Technologies, Ltd. written permission.
+#
+# To obtain such a permit, you should contact New Cloud Technologies, Ltd.
+# at http://ncloudtech.com/contact.html
+#
+##
+
+FROM opensuse/leap:15.5
+
+LABEL project="openSUSE Leap 15.5 dereloper's Docker image"
+
+#RUN yast timezone set timezone=Europe/Moscow hwclock=local
+
+RUN \
+    zypper refresh && \
+    zypper update -y && \
+    zypper install -y \
+        binutils \
+        cmake \
+        gcc12 \
+        gcc12-c++ \
+        make \
+        mc \
+        sudo
+
+RUN \
+    zypper install -y \
+        'boost_1_75_0-*-devel' \
+        'libboost_*1_75_0-devel' \
+        libgcrypt-devel \
+        libgnutls-devel \
+        libopenssl-1_1-devel \
+        libQt5Core-devel \
+        libQt5DBus-devel \
+        libQt5Network-devel \
+        libQt5Sql-devel \
+        libQt5Xml-devel \
+        libQt5Widgets-devel \
+        libqt5-linguist-devel \
+        libqt5-qtsvg-devel
