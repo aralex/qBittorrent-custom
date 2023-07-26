@@ -1,0 +1,6 @@
+[submodule "qBittorrent"]
+	path = qBittorrent
+	url = git@github.com:aralex/qBittorrent.git
+[submodule "libtorrent"]
+	path = libtorrent
+	url = git@github.com:arvidn/libtorrent.git
