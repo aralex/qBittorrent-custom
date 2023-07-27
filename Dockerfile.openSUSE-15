@@ -2,8 +2,6 @@ FROM opensuse/leap:15.5
 
 LABEL project="openSUSE Leap 15.5 developer's Docker image"
 
-#RUN yast timezone set timezone=Europe/Moscow hwclock=local
-
 RUN \
     zypper refresh && \
     zypper update -y && \
