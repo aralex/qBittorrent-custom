@@ -4,6 +4,12 @@ set -e
 
 CMD=$1
 
+if [[ -z $CMD ]]
+then
+    echo "Usage: $0 (build|stop|run)"
+    exit
+fi
+
 CUR_DIR=`realpath $(dirname "$0")`
 
 IMAGE='opensuse_leap-dev:15.5'
@@ -12,13 +18,6 @@ CONTAINER_NAME=$(realpath . | cut -c 2- | tr ' /' '.')
 
 echo "Docker base image:  $IMAGE"
 echo "Docker container:   $CONTAINER_NAME"
-
-
-if [[ -z $CMD ]]
-then
-    echo "Usage: $0 (build|stop|run)"
-    exit
-fi
 
 
 function show_n_exec() {
