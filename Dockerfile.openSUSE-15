@@ -11,7 +11,7 @@
 
 FROM opensuse/leap:15.5
 
-LABEL project="openSUSE Leap 15.5 dereloper's Docker image"
+LABEL project="openSUSE Leap 15.5 developer's Docker image"
 
 #RUN yast timezone set timezone=Europe/Moscow hwclock=local
 
@@ -41,4 +41,5 @@ RUN \
         libQt5Xml-devel \
         libQt5Widgets-devel \
         libqt5-linguist-devel \
-        libqt5-qtsvg-devel
+        libqt5-qtsvg-devel \
+        rpm-build
