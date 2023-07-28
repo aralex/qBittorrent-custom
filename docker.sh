@@ -21,8 +21,7 @@ echo "Docker container:   $CONTAINER_NAME"
 
 
 function show_n_exec() {
-    echo "\$ $@" ;
-    "$@"
+    (set -x; "$@")
 }
 
 
