@@ -46,11 +46,12 @@ function destroy_container() {
 GID=`id -g`
 GROUP=`id -n -g`
 
+# Создаём пустую временную директорию, чтобы при сборке Docker-образа контекст был пустым.
 TMP_DIR='./tmp'
-
 [[ -d $TMP_DIR ]] && rm -rf "$TMP_DIR"
 mkdir -p "$TMP_DIR"
 
+# Отрабатываем команду, которую скрипт получил при старте.
 case $CMD in
     build)
         echo "Build Docker image ${IMAGE}"
@@ -67,6 +68,7 @@ case $CMD in
     run)
         echo "Run Docker IMAGE=${IMAGE} CONTAINER_NAME=${CONTAINER_NAME}"
 
+        # Если контейнер ещё не запущен, запускаем его.
         if ! [[ $(is_container_running "${CONTAINER_NAME}") ]]
         then
             show_n_exec docker run \
@@ -92,6 +94,7 @@ case $CMD in
                 echo '$USER ALL=(ALL:ALL) NOPASSWD:ALL' >/etc/sudoers.d/$USER"
         fi
 
+        # Входим в контейнер (запускаем в нём shell).
         show_n_exec docker exec -it "$CONTAINER_NAME" /bin/bash -c "su -P -c '/bin/bash -l' $USER"
         ;;
 esac
