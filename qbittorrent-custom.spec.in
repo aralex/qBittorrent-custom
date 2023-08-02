@@ -2,7 +2,7 @@
 # spec file for package qbittorrent
 #
 
-Buildroot:      @CMAKE_BINARY_DIR@/_CPack_Packages/Linux/RPM/@CPACK_PACKAGE_FILE_NAME@
+Buildroot:      @TOP_DIR@/@CPACK_PACKAGE_FILE_NAME@
 Summary:        A custom build of the BitTorrent client in Qt
 Name:           @CPACK_PACKAGE_NAME@
 Version:        @CPACK_PACKAGE_VERSION@
@@ -19,9 +19,9 @@ Requires:       libharfbuzz0 libicu-suse65_1 libjitterentropy3 liblz4-1 liblzma5
 Requires:       libopenssl1_1 libpcre1 libpcre2-16-0 libpng16-16 libproxy1
 Requires:       libstdc++6 libsystemd0 libxcb1 libz1 libzstd1
 
-%define _rpmdir         @CMAKE_BINARY_DIR@/_CPack_Packages/Linux/RPM/RPMS
+%define _prefix         @CPACK_PACKAGING_INSTALL_PREFIX@
+%define _topdir         @TOP_DIR@
 %define _rpmfilename    @CPACK_PACKAGE_FILE_NAME@.rpm
-%define _topdir         @CMAKE_BINARY_DIR@/_CPack_Packages/Linux/RPM
 
 %define _unpackaged_files_terminate_build 0
 
@@ -29,16 +29,13 @@ Requires:       libstdc++6 libsystemd0 libxcb1 libz1 libzstd1
 A custom build of the BitTorrent client in Qt
 
 %prep
-mv $RPM_BUILD_ROOT @CMAKE_BINARY_DIR@/_CPack_Packages/Linux/RPM/tmpBBroot
+echo "=== %prep"
+chrpath -r '%{_prefix}/%{_lib}' '%{buildroot}%{_bindir}/qbittorrent'
 
 %install
-if [ -e $RPM_BUILD_ROOT ];
-then
-  rm -Rf $RPM_BUILD_ROOT
-fi
-mv "@CMAKE_BINARY_DIR@/_CPack_Packages/Linux/RPM/tmpBBroot" $RPM_BUILD_ROOT
+echo "=== %install"
 
 %files
 %defattr(-,root,root,-)
-@CPACK_PACKAGING_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/*
-@CPACK_PACKAGING_INSTALL_PREFIX@/bin/qbittorrent
+%{_libdir}/*
+%{_bindir}/qbittorrent

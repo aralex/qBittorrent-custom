@@ -7,11 +7,13 @@ RUN \
     zypper update -y && \
     zypper install -y \
         binutils \
+        chrpath \
         cmake \
         gcc12 \
         gcc12-c++ \
         make \
         mc \
+        rpm-build \
         sudo
 
 RUN \
@@ -28,5 +30,4 @@ RUN \
         libQt5Xml-devel \
         libQt5Widgets-devel \
         libqt5-linguist-devel \
-        libqt5-qtsvg-devel \
-        rpm-build
+        libqt5-qtsvg-devel

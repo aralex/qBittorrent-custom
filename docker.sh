@@ -86,10 +86,9 @@ case $CMD in
             show_n_exec docker exec -it "$CONTAINER_NAME" /bin/bash -c " \
                 set -e -v -x && \
                 groupadd -f -g $GID $GROUP && \
-                echo export PS1=\\'\\\\u@[openSUSE - \\\\w] \\\\$ \\' >>/home/$USER/.profile "' && \
-                echo export PATH=\"$PATH:\$PATH\"'" >>/home/$USER/.profile && \
-                useradd -u $UID -g $GID $USER && \
-                chown $USER:$GROUP /home/$USER && \
+                useradd -m -u $UID -g $GID $USER && \
+                echo export PS1=\\'\\\\u@[openSUSE - \\\\w] \\\\$ \\' >>/home/$USER/.profile && \
+                chown -R $USER:$GROUP /home/$USER && \
                 echo '$USER ALL=(ALL:ALL) NOPASSWD:ALL' >/etc/sudoers.d/$USER"
         fi
 

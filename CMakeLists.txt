@@ -12,8 +12,8 @@ set(LIB_INSTALL_DIR "lib64")
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 set(CMAKE_SKIP_BUILD_RPATH OFF)
-set(CMAKE_BUILD_RPATH   "\$ORIGIN/../${LIB_INSTALL_DIR}")
-set(CMAKE_INSTALL_RPATH "\$ORIGIN/../${LIB_INSTALL_DIR}")
+#set(CMAKE_INSTALL_RPATH "\$ORIGIN/../${LIB_INSTALL_DIR}")
+set(CMAKE_INSTALL_RPATH "                                                                                                    ")
 
 add_subdirectory(libtorrent)
 add_subdirectory(qBittorrent)
@@ -28,6 +28,7 @@ set(CPACK_PACKAGE_CONTACT           "artem@inze.net")
 set(CPACK_PACKAGE_VENDOR            "Artem N. Alexeyev")
 set(CPACK_PACKAGING_INSTALL_PREFIX  "/opt/${CMAKE_PROJECT_NAME}")
 set(CPACK_PACKAGE_FILE_NAME         "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CPACK_PACKAGE_RELEASE}.${CMAKE_SYSTEM_PROCESSOR}")
+set(TOP_DIR                         "${CMAKE_BINARY_DIR}/_CPack_Packages/Linux/RPM")
 
 set(CPACK_GENERATOR "RPM")
 
