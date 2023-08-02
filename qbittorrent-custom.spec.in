@@ -29,13 +29,9 @@ Requires:       libstdc++6 libsystemd0 libxcb1 libz1 libzstd1
 A custom build of the BitTorrent client in Qt
 
 %prep
-echo "=== %prep"
-chrpath -r '%{_prefix}/%{_lib}' '%{buildroot}%{_bindir}/qbittorrent'
-
-%install
-echo "=== %install"
+find '%{buildroot}%{_bindir}' -type f -exec chrpath -r '%{_prefix}/%{_lib}' {} \;
 
 %files
 %defattr(-,root,root,-)
 %{_libdir}/*
-%{_bindir}/qbittorrent
+%{_bindir}/*
